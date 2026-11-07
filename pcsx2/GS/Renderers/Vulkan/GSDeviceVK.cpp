@@ -1343,6 +1343,17 @@ bool GSDeviceVK::ProcessDeviceExtensions()
 	m_optional_extensions.vk_swapchain_maintenance1 &= 
 		(swapchain_maintenance1_feature.swapchainMaintenance1 == VK_TRUE);
 
+	// PanVK (Mesa 26.2 on a Mali-G610, Wayland) advertises swapchain_maintenance1, but its
+	// vkReleaseSwapchainImagesKHR jumps to a null pointer inside the driver. That call releases an
+	// acquired image before the swap chain is recreated, so the first window resize crashed the
+	// emulator. Without the extension the image goes away with the old swap chain, as it always did.
+	if (m_optional_extensions.vk_swapchain_maintenance1 && m_optional_extensions.vk_khr_driver_properties &&
+		m_device_driver_properties.driverID == VK_DRIVER_ID_MESA_PANVK)
+	{
+		Console.Warning("VK: not using swapchain_maintenance1 on PanVK (its image release crashes).");
+		m_optional_extensions.vk_swapchain_maintenance1 = false;
+	}
+
 	m_optional_extensions.vk_ext_fragment_shader_interlock &=
 		(fragment_shader_interlock_ext_feature.fragmentShaderPixelInterlock == VK_TRUE);
 
