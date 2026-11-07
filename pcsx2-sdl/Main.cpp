@@ -387,6 +387,30 @@ static bool WaylandSessionPresent()
 	return wl && *wl;
 }
 
+// The window is created windowed and the compositor makes it fullscreen only once the first frame is on screen, so
+// the swapchain starts at the placeholder size. Drivers whose WSI lets the application pick the extent (Mesa's PanVK,
+// for one) then kept rendering at 1280x720 for the compositor to scale up, which made text and the game jagged.
+// Follow the window's real pixel size instead. SDL calls this from whichever thread pumps events.
+static bool SDLCALL WaylandWindowEventWatch(void*, SDL_Event* ev)
+{
+	if (ev->type == SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED && s_wayland_window &&
+		ev->window.windowID == SDL_GetWindowID(s_wayland_window) && ev->window.data1 > 0 && ev->window.data2 > 0)
+	{
+		float scale = SDL_GetWindowPixelDensity(s_wayland_window);
+		if (scale <= 0.0f)
+			scale = 1.0f;
+		const u32 width = static_cast<u32>(ev->window.data1);
+		const u32 height = static_cast<u32>(ev->window.data2);
+		Console.WriteLnFmt("Wayland: window is now {}x{}, resizing the display.", width, height);
+		// MTGS commands may only be queued from the CPU thread.
+		Host::RunOnCPUThread([width, height, scale]() {
+			if (MTGS::IsOpen())
+				MTGS::ResizeDisplayWindow(width, height, scale);
+		});
+	}
+	return true;
+}
+
 // Bring up an SDL3 Vulkan window on the Wayland compositor and populate `wi`
 // with its wl_display / wl_surface. Returns false (and leaves s_wayland_window
 // null) if anything fails, so the caller falls back to VulkanDirect.
@@ -430,6 +454,8 @@ static bool BuildWaylandWindowInfo(WindowInfo& wi)
 			SDL_QuitSubSystem(SDL_INIT_VIDEO);
 			return false;
 		}
+
+		SDL_AddEventWatch(WaylandWindowEventWatch, nullptr);
 	}
 
 	if (!s_wayland_window)
