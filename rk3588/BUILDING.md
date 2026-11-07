@@ -2,7 +2,7 @@
 
 The release binary is built natively on an RK3588 inside an Ubuntu 22.04 arm64 environment with clang 17.
 
-1. Get the source of the release: `git clone -b v<version> https://github.com/Matheus290/ARMSX2-RK3588` (or the source archive attached to the release).
+1. Get the source of the release: `git clone -b v<version> https://github.com/Matheus290/Unofficial-ARMSX2-RK3588` (or the source archive attached to the release).
 2. Build the dependencies (SDL3 and the rest) into a prefix with the upstream script: `.github/workflows/scripts/linux/build-dependencies-runner.sh` (packages it needs are listed in `.github/workflows/linux_build_sdl.yml`).
 3. Configure and build:
 

@@ -2,7 +2,7 @@
 # ARMSX2 RK3588 (experimental) installer.
 #
 # Run it from an extracted release package:   ./install.sh
-# or let it download the latest release:      curl -fsSL https://raw.githubusercontent.com/Matheus290/ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
+# or let it download the latest release:      curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
 #
 # ROCKNIX:      installs to /storage/armsx2-rk3588 and adds "armsx2-rk3588" to the PS2 emulators in EmulationStation.
 # Other Linux:  installs to ~/.local/share/armsx2-rk3588, with ~/.local/bin/armsx2-rk3588 and a menu entry.
@@ -10,7 +10,7 @@
 
 set -e
 
-REPO="Matheus290/ARMSX2-RK3588"
+REPO="Matheus290/Unofficial-ARMSX2-RK3588"
 NAME="armsx2-rk3588"
 
 say() { printf '%s\n' "$*"; }
@@ -183,8 +183,8 @@ else
   cat > "$APPS/$NAME.desktop" <<EOF
 [Desktop Entry]
 Type=Application
-Name=ARMSX2 RK3588 (experimental)
-Comment=PlayStation 2 emulator, experimental RK3588 build
+Name=ARMSX2 RK3588 (unofficial)
+Comment=Unofficial PlayStation 2 emulator build for RK3588
 Exec=$DEST/armsx2-rk3588.sh
 Icon=$DEST/resources/icons/AppIconLarge.png
 Terminal=false

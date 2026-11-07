@@ -1,10 +1,10 @@
-# Tutorial: installing ARMSX2 RK3588 on ROCKNIX
+# Tutorial: installing the unofficial ARMSX2 RK3588 build on ROCKNIX
 
 *[Versão em português](TUTORIAL-ROCKNIX.pt-BR.md)*
 
 This guide takes you from nothing to playing PS2 games from ROCKNIX's EmulationStation, with ARMSX2 RK3588 added as one more emulator in the PS2 list. It takes about 10 minutes.
 
-> This is an **experimental, unofficial** build with no direct connection to the ARMSX2 project. If something goes wrong, do **not** report it to ARMSX2: open an [issue on this fork](https://github.com/Matheus290/ARMSX2-RK3588/issues).
+> This is an **experimental, unofficial** build not affiliated with or endorsed by the ARMSX2 project. If something goes wrong, do **not** report it to ARMSX2: open an [issue on this fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues).
 
 ---
 
@@ -70,7 +70,7 @@ When you see something like `RK3588:~ #`, you are in.
 Copy this command, paste it in the terminal and press Enter:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Matheus290/ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
 ```
 
 The installer:
@@ -85,7 +85,7 @@ The installer:
 
 It ends with **Done.** You can close the terminal.
 
-> No internet on the device? Download `armsx2-rk3588-*-linux-arm64.tar.xz` from [Releases](https://github.com/Matheus290/ARMSX2-RK3588/releases), copy it to the shared folder (for example `roms/`), then over SSH run:
+> No internet on the device? Download `armsx2-rk3588-*-linux-arm64.tar.xz` from [Releases](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases), copy it to the shared folder (for example `roms/`), then over SSH run:
 > ```sh
 > cd /storage/roms && tar -xJf armsx2-rk3588-*-linux-arm64.tar.xz && ./armsx2-rk3588/install.sh
 > ```
@@ -161,4 +161,4 @@ Check that the BIOS is in `roms/bios/PS2`. The log is at `/storage/armsx2-rk3588
 ROCKNIX can use Arm's video driver (*libmali*) or *Panfrost*. This build runs best on **libmali**; some heavy scenes are much slower on Panfrost. Some games also run better at 1x: open the menu (L3 + R3) → *Settings → Graphics* and lower the internal resolution.
 
 **Found a bug?**
-Open an [issue here](https://github.com/Matheus290/ARMSX2-RK3588/issues). Include your device, the game, what happened, and the `emulog.txt` file. Please do **not** report it to the original ARMSX2 project.
+Open an [issue here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues). Include your device, the game, what happened, and the `emulog.txt` file. Please do **not** report it to the original ARMSX2 project.

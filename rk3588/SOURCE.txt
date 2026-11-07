@@ -1,10 +1,10 @@
-ARMSX2 optimized for RK3588 (unofficial) - v2026.11.07
+Unofficial ARMSX2 build optimized for RK3588 - v2026.11.07
 
-Source code (GNU GPL v3): tag v2026.11.07 of https://github.com/Matheus290/ARMSX2-RK3588
+Source code (GNU GPL v3): tag v2026.11.07 of https://github.com/Matheus290/Unofficial-ARMSX2-RK3588
 (GitHub attaches the source archive to the release). How to build: rk3588/BUILDING.md there.
 Based on ARMSX2 (https://github.com/ARMSX2/ARMSX2), which is based on PCSX2 (https://github.com/PCSX2/pcsx2).
-This fork has no direct connection to the ARMSX2 project. Report bugs at
-https://github.com/Matheus290/ARMSX2-RK3588/issues
+This fork is not affiliated with or endorsed by the ARMSX2 project. Report bugs at
+https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues
 
 Built with clang 17 (Ubuntu 22.04 arm64), Release, LTO, profile-guided optimization,
 SDL frontend with Wayland support, 4 KB host pages.

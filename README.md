@@ -1,18 +1,18 @@
-# ARMSX2 optimized for RK3588 (unofficial)
+# Unofficial ARMSX2 build optimized for RK3588
 
-> **🇺🇸 Read first:** this is an **unofficial, experimental fork** of [ARMSX2](https://github.com/ARMSX2/ARMSX2), tuned for **RK3588** boards and handhelds (Orange Pi 5 and similar, Mali-G610 GPU). It has **no direct connection to the ARMSX2 project**: its changes have not been reviewed or accepted by the ARMSX2 developers. The intent is to help: improvements that prove themselves here may be proposed to ARMSX2 later, gradually. Meanwhile, anyone can install and test them.
+> **🇺🇸 Read first:** this is an **unofficial, experimental fork** of [ARMSX2](https://github.com/ARMSX2/ARMSX2), tuned for **RK3588** boards and handhelds (Orange Pi 5 and similar, Mali-G610 GPU). It is **not affiliated with, endorsed by or supported by the ARMSX2 project**: its changes have not been reviewed or accepted by the ARMSX2 developers. The intent is to help: improvements that prove themselves here may be proposed to ARMSX2 later, gradually. Meanwhile, anyone can install and test them.
 >
-> **Found a bug? Report it [here, on this fork](https://github.com/Matheus290/ARMSX2-RK3588/issues), never to the ARMSX2 project.**
+> **Found a bug? Report it [here, on this fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), never to the ARMSX2 project.**
 
-> **🇧🇷 Leia antes:** este é um **fork não oficial e experimental** do [ARMSX2](https://github.com/ARMSX2/ARMSX2), otimizado para placas e portáteis **RK3588** (Orange Pi 5 e similares, GPU Mali-G610). Ele **não tem ligação direta com o projeto ARMSX2**: as mudanças não foram revisadas nem aceitas pelos desenvolvedores do ARMSX2. A intenção é ajudar: melhorias que se provarem boas aqui poderão ser propostas ao ARMSX2 mais adiante, aos poucos. Enquanto isso, qualquer pessoa pode instalar e testar.
+> **🇧🇷 Leia antes:** este é um **fork não oficial e experimental** do [ARMSX2](https://github.com/ARMSX2/ARMSX2), otimizado para placas e portáteis **RK3588** (Orange Pi 5 e similares, GPU Mali-G610). Ele **não tem vínculo com o projeto ARMSX2, nem é endossado ou suportado por ele**: as mudanças não foram revisadas nem aceitas pelos desenvolvedores do ARMSX2. A intenção é ajudar: melhorias que se provarem boas aqui poderão ser propostas ao ARMSX2 mais adiante, aos poucos. Enquanto isso, qualquer pessoa pode instalar e testar.
 >
-> **Achou um bug? Reporte [aqui, neste fork](https://github.com/Matheus290/ARMSX2-RK3588/issues), nunca ao projeto ARMSX2.**
+> **Achou um bug? Reporte [aqui, neste fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), nunca ao projeto ARMSX2.**
 
 ---
 
 ## Install
 
-📖 **Step-by-step tutorial for ROCKNIX:** [English](https://github.com/Matheus290/ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX.md) · [Português](https://github.com/Matheus290/ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX.pt-BR.md)
+📖 **Step-by-step tutorial for ROCKNIX:** [English](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX.md) · [Português](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX.pt-BR.md)
 
 **Requirements:** 64-bit ARM (aarch64) Linux on an RK3588 device, with a Vulkan driver for the Mali-G610 (Arm's libmali, recommended, or Mesa's Panfrost). It runs on a Wayland session (Weston, sway, GNOME, KDE…) or on a bare console (KMS). X11-only desktops are not supported. A PS2 BIOS dumped from your own console is required.
 
@@ -21,12 +21,12 @@
 ### One command (over SSH on ROCKNIX: `ssh root@<device-ip>`, password `rocknix`)
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Matheus290/ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
 ```
 
 ### Or from the release package
 
-Download `armsx2-rk3588-*-linux-arm64.tar.xz` from [Releases](https://github.com/Matheus290/ARMSX2-RK3588/releases), then:
+Download `armsx2-rk3588-*-linux-arm64.tar.xz` from [Releases](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases), then:
 
 ```sh
 tar -xJf armsx2-rk3588-*-linux-arm64.tar.xz
@@ -60,7 +60,7 @@ tar -xJf armsx2-rk3588-*-linux-arm64.tar.xz
 
 ## What is different from the official ARMSX2
 
-Every change is a separate commit on the `rk3588` branch. [rk3588/CHANGES.md](https://github.com/Matheus290/ARMSX2-RK3588/blob/rk3588/rk3588/CHANGES.md) lists them and says which ones only act on Mali GPUs.
+Every change is a separate commit on the `rk3588` branch. [rk3588/CHANGES.md](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/CHANGES.md) lists them and says which ones only act on Mali GPUs.
 
 **Mali GPU (detected automatically; other GPUs are not affected)**
 - Faster rendering of effects that read the screen back (feedback loops) on Mali's tile-based GPU: fewer render passes per frame.
@@ -92,7 +92,7 @@ Every change is a separate commit on the `rk3588` branch. [rk3588/CHANGES.md](ht
 
 ## Source code and license
 
-ARMSX2 is based on [PCSX2](https://github.com/PCSX2/pcsx2) and licensed under the **GNU GPL v3** (see `COPYING.GPLv3`). Each release is built from the release's tag in this repository, and GitHub attaches that exact source to every release. [rk3588/BUILDING.md](https://github.com/Matheus290/ARMSX2-RK3588/blob/rk3588/rk3588/BUILDING.md) explains how to build it.
+ARMSX2 is based on [PCSX2](https://github.com/PCSX2/pcsx2) and licensed under the **GNU GPL v3** (see `COPYING.GPLv3`). Each release is built from the release's tag in this repository, and GitHub attaches that exact source to every release. [rk3588/BUILDING.md](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/BUILDING.md) explains how to build it.
 
 All credit for the emulator goes to the PCSX2 and ARMSX2 developers. This fork only adds an experimental set of changes on top of their work.
 
