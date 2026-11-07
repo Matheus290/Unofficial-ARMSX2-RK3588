@@ -1022,10 +1022,14 @@ void Pcsx2SDL::CPUThreadMain(VMBootParameters initial_params, bool start_in_fsui
 					continue;
 				}
 
-				// Nothing pending. If no FSUI session is running, exit cleanly
-				// — the user's game finished and there is no UI to show next,
-				// so the frontend's job is done.
-				if (!start_in_fsui)
+				// Nothing pending. If no FSUI session is running and the game has
+				// finished, exit cleanly: there is no UI to show next, so the
+				// frontend's job is done. A paused game is not finished — the
+				// pause menu is up (opening it pauses the VM), so keep polling
+				// input below for it; exiting here closed the emulator as soon
+				// as a game started from the command line (e.g. by
+				// EmulationStation) opened its menu.
+				if (!start_in_fsui && state == VMState::Shutdown)
 				{
 					s_shutdown_requested.store(true, std::memory_order_release);
 					break;
