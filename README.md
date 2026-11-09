@@ -16,7 +16,7 @@
 
 **Requirements:** 64-bit ARM (aarch64) Linux on an RK3588 device, with a Vulkan driver for the Mali-G610 (Arm's libmali, recommended, or Mesa's Panfrost). It runs on a Wayland session (Weston, sway, GNOME, KDE…) or on a bare console (KMS). X11-only desktops are not supported. A PS2 BIOS dumped from your own console is required.
 
-**Tested on:** Orange Pi 5, ROCKNIX 20261001, with libmali and Panfrost.
+**Tested only on ROCKNIX:** Orange Pi 5, ROCKNIX 20261001, with libmali and Panfrost. The installer also has paths for Batocera and for other aarch64 Linux systems, but those have **not been tested**, and setting the emulator up there is different from ROCKNIX (the EmulationStation and Tools entries below are ROCKNIX-specific). If you install it elsewhere and are not sure how to adapt the steps, ask someone experienced with your system, or an AI assistant, for help.
 
 ### One command (over SSH on ROCKNIX: `ssh root@<device-ip>`, password `rocknix`)
 
@@ -35,15 +35,16 @@ tar -xJf armsx2-rk3588-*-linux-arm64.tar.xz
 
 ### What the installer does
 
-| | ROCKNIX | Batocera | Other Linux |
+| | ROCKNIX (tested) | Batocera (untested) | Other Linux (untested) |
 |---|---|---|---|
 | Program and settings | `/storage/armsx2-rk3588` | `~/.local/share/armsx2-rk3588` | `~/.local/share/armsx2-rk3588` |
 | PS2 BIOS | `/storage/roms/bios/PS2` | `/userdata/bios` | `…/armsx2-rk3588/bios` |
 | Games | `/storage/roms/ps2` | `/userdata/roms/ps2` | `~/Games/PS2` |
 | Memory cards | `/storage/roms/saves/ps2` | `/userdata/saves/ps2` | `…/armsx2-rk3588/memcards` |
-| How to start | EmulationStation: PS2 emulator **armsx2-rk3588** | add it to your frontend (below) | applications menu, or `armsx2-rk3588 [game]` |
+| How to start | EmulationStation: PS2 emulator **armsx2-rk3588**, and **Start ARMSX2 RK3588** in Tools | add it to your frontend (below) | applications menu, or `armsx2-rk3588 [game]` |
 
 - **ROCKNIX:** the installer adds **armsx2-rk3588** to the PS2 system's emulator list, next to the emulators you already have; nothing is removed. Restart EmulationStation, then pick it in *GAME SETTINGS → PER SYSTEM ADVANCED CONFIGURATION → PlayStation 2 → EMULATOR* (or per game in *ADVANCED GAME OPTIONS*). Under the hood, the PS2 launch command points to `es_launch.sh`. That script starts this emulator through ROCKNIX's `runemu.sh`, so the performance profile and exit hotkey still apply, and it passes every other emulator on to the previous command. Your systems file is backed up as `es_systems.cfg.bak-armsx2-rk3588`.
+- **ROCKNIX Tools menu:** the installer also adds **Start ARMSX2 RK3588** to *Tools*. It opens the emulator on its own game list, without a game, which is where you scan games (*Settings → Game List → Scan For New Games*), download covers and change settings. ROCKNIX rebuilds the Tools folder on every boot, so a small boot script (`/storage/.config/autostart/armsx2-rk3588-tools.sh`) puts the entry back each time.
 - **Other frontends (Batocera, other EmulationStation builds, Pegasus…):** add an emulator or command that runs `/path/to/armsx2-rk3588/armsx2-rk3588.sh "/path/to/game.chd"`. `ARMSX2_RK3588_DEST=/folder` picks the install folder, and `ARMSX2_RK3588_NO_SHORTCUTS=1` skips registration.
 - **First install defaults:** Vulkan at 2x native resolution, smooth bilinear output, widescreen patches, MTVU and IOP thread on, GS back thread on, *MaliOrderedInputAttachment* on, and the first controller mapped. These are only defaults: change anything in the emulator's menu and it stays changed. Updates never touch your settings.
 - **Updating:** run the installer again. **Uninstalling:** run `uninstall.sh` in the install folder. It puts the PS2 launch command back and asks before deleting your settings and save states.
@@ -79,6 +80,7 @@ Every change is a separate commit on the `rk3588` branch. [rk3588/CHANGES.md](ht
 - Frames that could not be displayed are skipped in mailbox mode too.
 - On Wayland, rendering follows the window's real size; on Panfrost it used to render at 1280x720.
 - The pause menu works when a game is started by EmulationStation (it used to close the emulator).
+- Games started by EmulationStation now find their entry in the emulator's game list: *Game Properties* shows the game's details and per-game patches (e.g. Burnout Revenge's bloom removal), and the pause menu shows the cover. Before, these only worked for games started from the emulator's own list.
 - Switching renderer keeps the vsync setting.
 - Pause menu: the hotkey toggles it, it reopens on the item you left, it shows the selection cursor, and choice lists open on the current option.
 - The menu clock follows EmulationStation's 12/24-hour setting.
@@ -88,7 +90,8 @@ Every change is a separate commit on the `rk3588` branch. [rk3588/CHANGES.md](ht
 
 - **Experimental:** expect bugs that the official build does not have. If a game misbehaves, check whether the official ARMSX2 does the same, and mention it in your report here.
 - On Panfrost, some heavy scenes run noticeably slower than on Arm's libmali (Shadow of the Colossus temple: ~68% vs ~94%). That comes from the driver.
-- Only tested on RK3588 with a Mali-G610.
+- Only tested on **ROCKNIX**, on an RK3588 with a Mali-G610. Batocera and other Linux systems are untested.
+- A game that the emulator has never scanned has no cover or game details when started from EmulationStation. Open **Tools → Start ARMSX2 RK3588** once and scan (*Settings → Game List → Scan For New Games*).
 
 ## Source code and license
 

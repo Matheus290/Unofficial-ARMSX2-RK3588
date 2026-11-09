@@ -6,6 +6,8 @@ if [ -d /storage/.config ] && [ -d /storage/roms ]; then
   DEST=/storage/$NAME
   # Give the PS2 system its previous command back and drop the emulator entry.
   [ -f "$DEST/es-setup.py" ] && python3 "$DEST/es-setup.py" uninstall "$DEST"
+  # The Tools menu entry and the boot script that puts it back.
+  rm -f "/storage/.config/modules/Start ARMSX2 RK3588.sh" /storage/.config/autostart/armsx2-rk3588-tools.sh
 else
   DEST="${XDG_DATA_HOME:-$HOME/.local/share}/$NAME"
   rm -f "$HOME/.local/bin/$NAME" "${XDG_DATA_HOME:-$HOME/.local/share}/applications/$NAME.desktop"

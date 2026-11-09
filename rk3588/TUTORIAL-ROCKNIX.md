@@ -4,6 +4,8 @@
 
 This guide takes you from nothing to playing PS2 games from ROCKNIX's EmulationStation, with ARMSX2 RK3588 added as one more emulator in the PS2 list. It takes about 10 minutes.
 
+> Everything here was tested **only on ROCKNIX**. On Batocera or another Linux the steps are different and have not been tested: if you go that way and get stuck, ask someone who knows your system, or an AI assistant, for help.
+
 > This is an **experimental, unofficial** build not affiliated with or endorsed by the ARMSX2 project. If something goes wrong, do **not** report it to ARMSX2: open an [issue on this fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues).
 
 ---
@@ -116,6 +118,18 @@ Then start games from the list as usual.
 
 ---
 
+## Step 7 (recommended): scan your games from the Tools menu
+
+The installer also adds **Start ARMSX2 RK3588** to EmulationStation's **Tools** menu. It opens the emulator on its own game list, without starting a game.
+
+1. Open **Tools → Start ARMSX2 RK3588**.
+2. Go to **Settings → Game List** and choose **Scan For New Games** (also do this after adding new games). You can download covers there too.
+3. Close the emulator.
+
+After that, games started from EmulationStation show their cover in the emulator's menu, and **Game Properties** shows each game's details and per-game patches (for example, Burnout Revenge's bloom removal).
+
+---
+
 ## Controls
 
 The first controller is mapped automatically (Xbox, PlayStation or a handheld's built-in pad).
@@ -156,6 +170,12 @@ Restart EmulationStation (Step 5). If another PS2 emulator is installed later an
 
 **The game does not start, or goes straight back to the list**
 Check that the BIOS is in `roms/bios/PS2`. The log is at `/storage/armsx2-rk3588/logs/emulog.txt`; attach it if you open an issue.
+
+**Game Properties says "Cannot show details for games which were not scanned", or there is no cover**
+The emulator has not scanned that game yet: do Step 7.
+
+**"Start ARMSX2 RK3588" is missing from Tools**
+Restart EmulationStation. It is put back by `/storage/.config/autostart/armsx2-rk3588-tools.sh` at every boot; if that file is gone, run the installer again.
 
 **Slow, or the picture looks wrong**
 ROCKNIX can use Arm's video driver (*libmali*) or *Panfrost*. This build runs best on **libmali**; some heavy scenes are much slower on Panfrost. Some games also run better at 1x: open the menu (L3 + R3) → *Settings → Graphics* and lower the internal resolution.

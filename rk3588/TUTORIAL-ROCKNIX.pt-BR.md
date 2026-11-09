@@ -4,6 +4,8 @@
 
 Este guia leva você do zero até jogar PS2 pelo EmulationStation do ROCKNIX, com o ARMSX2 otimizado para RK3588 como mais um emulador na lista do PS2. Leva uns 10 minutos.
 
+> Tudo aqui foi testado **apenas no ROCKNIX**. No Batocera ou em outro Linux os passos são diferentes e não foram testados: se for por esse caminho e travar em algum ponto, peça ajuda a alguém que conheça o seu sistema, ou a um assistente de IA.
+
 > Esta é uma versão **experimental e não oficial**, sem vínculo com o projeto ARMSX2 e não endossada por ele. Se algo der errado, **não** reporte ao ARMSX2: abra uma [issue neste fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues).
 
 ---
@@ -116,6 +118,18 @@ Agora é só abrir o jogo pela lista, como qualquer outro.
 
 ---
 
+## Passo 7 (recomendado): escanear os jogos pelo menu Tools
+
+O instalador também coloca **Start ARMSX2 RK3588** no menu **Tools** do EmulationStation. Essa opção abre o emulador na lista de jogos dele, sem iniciar nenhum jogo.
+
+1. Abra **Tools → Start ARMSX2 RK3588**.
+2. Vá em **Settings → Game List** e escolha **Scan For New Games** (faça isso também sempre que adicionar jogos novos). Ali também dá para baixar as capas.
+3. Feche o emulador.
+
+Depois disso, os jogos abertos pelo EmulationStation mostram a capa no menu do emulador, e o **Game Properties** mostra os detalhes e os patches de cada jogo (por exemplo, a remoção do bloom do Burnout Revenge).
+
+---
+
 ## Controles
 
 O primeiro controle já vem mapeado (Xbox, PlayStation ou o controle embutido do portátil).
@@ -156,6 +170,12 @@ Reinicie o EmulationStation (Passo 5). Se outro emulador de PS2 for instalado de
 
 **O jogo não abre ou volta direto para a lista**
 Confira se o BIOS está em `roms/bios/PS2`. O log fica em `/storage/armsx2-rk3588/logs/emulog.txt`; anexe esse arquivo se for abrir uma issue.
+
+**O Game Properties diz "Cannot show details for games which were not scanned", ou a capa não aparece**
+O emulador ainda não escaneou esse jogo: faça o Passo 7.
+
+**"Start ARMSX2 RK3588" não aparece no Tools**
+Reinicie o EmulationStation. A opção é recolocada a cada boot por `/storage/.config/autostart/armsx2-rk3588-tools.sh`; se esse arquivo sumiu, rode o instalador de novo.
 
 **Lento ou com imagem estranha**
 No ROCKNIX, o driver de vídeo pode ser o da Arm (*libmali*) ou o *Panfrost*. Esta versão roda melhor com o **libmali**: algumas cenas pesadas ficam bem mais lentas no Panfrost. Alguns jogos também ficam mais leves em 1x: abra o menu (L3 + R3) → *Settings → Graphics* e reduza a resolução interna.

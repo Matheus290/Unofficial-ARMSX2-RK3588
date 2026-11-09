@@ -1,6 +1,6 @@
-Unofficial ARMSX2 build optimized for RK3588 - v2026.11.07
+Unofficial ARMSX2 build optimized for RK3588 - v2026.11.09
 
-Source code (GNU GPL v3): tag v2026.11.07 of https://github.com/Matheus290/Unofficial-ARMSX2-RK3588
+Source code (GNU GPL v3): tag v2026.11.09 of https://github.com/Matheus290/Unofficial-ARMSX2-RK3588
 (GitHub attaches the source archive to the release). How to build: rk3588/BUILDING.md there.
 Based on ARMSX2 (https://github.com/ARMSX2/ARMSX2), which is based on PCSX2 (https://github.com/PCSX2/pcsx2).
 This fork is not affiliated with or endorsed by the ARMSX2 project. Report bugs at

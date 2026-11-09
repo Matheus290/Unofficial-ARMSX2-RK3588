@@ -4,8 +4,10 @@
 # Run it from an extracted release package:   ./install.sh
 # or let it download the latest release:      curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/rk3588/install.sh | sh
 #
-# ROCKNIX:      installs to /storage/armsx2-rk3588 and adds "armsx2-rk3588" to the PS2 emulators in EmulationStation.
-# Other Linux:  installs to ~/.local/share/armsx2-rk3588, with ~/.local/bin/armsx2-rk3588 and a menu entry.
+# ROCKNIX:      installs to /storage/armsx2-rk3588, adds "armsx2-rk3588" to the PS2 emulators in EmulationStation
+#               and "Start ARMSX2 RK3588" to the Tools menu. This is the only system it has been tested on.
+# Other Linux:  installs to ~/.local/share/armsx2-rk3588, with ~/.local/bin/armsx2-rk3588 and a menu entry
+#               (untested; Batocera and other systems may need manual setup).
 # Running it again updates the emulator and keeps your settings, memory cards and save states.
 
 set -e
@@ -170,11 +172,38 @@ elif [ "$ROCKNIX" = 1 ]; then
   # Register as a PS2 emulator in EmulationStation (next to the ones already installed).
   command -v python3 >/dev/null 2>&1 || die "python3 is needed to edit EmulationStation's systems list."
   python3 "$DEST/es-setup.py" install "$DEST"
+
+  # "Start ARMSX2 RK3588" in ROCKNIX's Tools menu: opens the emulator on its game list, to scan games
+  # and change settings without starting one. ROCKNIX rebuilds /storage/.config/modules on every boot,
+  # so a boot script in /storage/.config/autostart copies the entry back each time.
+  # The entry must not exec the emulator: Tools entries run inside weston-terminal, and the emulator
+  # does not start as the terminal's direct child. Keep the file name free of parentheses too:
+  # EmulationStation cannot start a Tools entry whose name has them.
+  mkdir -p "$DEST/tools"
+  cat > "$DEST/tools/Start ARMSX2 RK3588.sh" <<EOF
+#!/bin/bash
+# Tools menu: ARMSX2 RK3588 on its game list. Not exec: see install.sh.
+"$DEST/armsx2-rk3588.sh"
+EOF
+  chmod +x "$DEST/tools/Start ARMSX2 RK3588.sh"
+  mkdir -p /storage/.config/autostart
+  cat > /storage/.config/autostart/armsx2-rk3588-tools.sh <<EOF
+#!/bin/sh
+# ARMSX2 RK3588: put its Tools menu entry back (ROCKNIX resyncs /storage/.config/modules on every boot).
+for f in "$DEST"/tools/*.sh; do
+  [ -f "\$f" ] && cp -f "\$f" /storage/.config/modules/ && chmod +x "/storage/.config/modules/\$(basename "\$f")"
+done
+exit 0
+EOF
+  chmod +x /storage/.config/autostart/armsx2-rk3588-tools.sh
+  /storage/.config/autostart/armsx2-rk3588-tools.sh
+
   say ""
   say "Done. Restart EmulationStation (Menu > Quit > Restart EmulationStation) or reboot."
   say "Then, in the PS2 system, pick the emulator \"armsx2-rk3588\" in the"
   say "system's or a game's advanced settings, and start games from the game list as usual."
   say "PS2 BIOS files go in $BIOS, games in $GAMES."
+  say "Tools > \"Start ARMSX2 RK3588\" opens the emulator on its game list (scan games, settings)."
 else
   mkdir -p "$HOME/.local/bin"
   ln -sf "$DEST/armsx2-rk3588.sh" "$HOME/.local/bin/$NAME"

@@ -1,3 +1,12 @@
+# Changes in rk3588-2026.11.09
+
+New since rk3588-2026.11.07:
+
+- FullscreenUI: open Game Properties for a game the game list does not have
+- SDL: load the game list from its cache for a game started from the command line *(SDL)*
+- ROCKNIX installer: adds "Start ARMSX2 RK3588" to the Tools menu, kept there by a boot script *(ROCKNIX only)*
+- Documentation: tested only on ROCKNIX; Batocera and other Linux systems are untested
+
 # Changes in rk3588-2026.11.07
 
 Commits on top of ARMSX2 (master of 2026-11-06), oldest first.
