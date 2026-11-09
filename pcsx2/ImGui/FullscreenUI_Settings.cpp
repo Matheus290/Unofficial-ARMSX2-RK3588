@@ -1697,8 +1697,12 @@ void FullscreenUI::SwitchToGameSettings()
 	if (!entry)
 		entry = GameList::GetEntryBySerialAndCRC(s_current_disc_serial.c_str(), s_current_disc_crc);
 
+	// A game started from the command line runs before (or without) a game list scan, so it may have no entry:
+	// open its settings by the running disc's serial and CRC, as the pages without an entry already allow.
 	if (entry)
 		SwitchToGameSettings(entry);
+	else
+		SwitchToGameSettings(s_current_disc_serial, s_current_disc_crc);
 }
 
 void FullscreenUI::SwitchToGameSettings(const std::string& path)
