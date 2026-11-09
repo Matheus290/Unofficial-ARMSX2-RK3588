@@ -961,6 +961,13 @@ void Pcsx2SDL::CPUThreadMain(VMBootParameters initial_params, bool start_in_fsui
 		// the user asks for a refresh. Incremental (cache kept), on the background thread.
 		Host::RefreshGameListAsync(false);
 	}
+	else
+	{
+		// A game started from the command line (as EmulationStation does): load the game list from its cache,
+		// without scanning anything new, so Game Properties, its patches and the pause menu's cover find this
+		// game. Before the boot, because the list takes the CDVD lock that a running game holds.
+		GameList::Refresh(false, true);
+	}
 
 	// The "initial" boot is the ISO/state passed on the CLI. When launching
 	// straight into FullscreenUI instead, this stays empty and the user picks
