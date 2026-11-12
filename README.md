@@ -10,7 +10,38 @@
 
 ---
 
-## Install
+## Which one should I install? / Qual instalar?
+
+This repository has two installers for ROCKNIX. You can install both and pick one per game in EmulationStation.
+
+| | **ARMSX2 Nightly + malisx2** (recommended) | **Unofficial ARMSX2 RK3588** |
+|---|---|---|
+| Emulator | The **official** ARMSX2 nightly, unmodified, downloaded from [ARMSX2's releases](https://github.com/ARMSX2/ARMSX2/releases) | This fork: ARMSX2 with experimental RK3588 changes (list below) |
+| Vulkan driver | **[malisx2](https://github.com/bmdhacks/malisx2)**, a Vulkan driver for Mali GPUs made for ARMSX2, selected automatically | The system's driver: Arm's libmali or Mesa's Panfrost |
+| ROCKNIX GPU driver | libmali (malisx2 runs on Arm's kernel driver) | libmali (recommended) or Panfrost |
+| Updates | Run the installer again: it fetches the newest nightly and malisx2 | Releases in this repository |
+| EmulationStation / Tools | **armsx2-nightly** / *Start ARMSX2 Nightly* | **armsx2-rk3588** / *Start ARMSX2 RK3588* |
+| Bugs | Installer: [here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues). Emulator and driver: their own projects | [Here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), never to ARMSX2 |
+
+**Why the Nightly + malisx2 is recommended:** malisx2 is the Mali support the ARMSX2 developers themselves maintain. On the RK3588 it draws the same frames as Arm's libmali in much less GPU time, so heavy games that crawled on the official ARMSX2 with libmali now run at or near full speed. Since it is the official build, you get every ARMSX2 improvement as soon as it lands. The unofficial RK3588 build is still useful if you have to stay on Panfrost, or to compare.
+
+**Por que recomendamos a Nightly + malisx2:** o malisx2 é o suporte a Mali mantido pelos próprios desenvolvedores do ARMSX2. No RK3588, ele desenha os mesmos quadros que o libmali da Arm gastando bem menos tempo de GPU, e jogos pesados que se arrastavam no ARMSX2 oficial com o libmali agora rodam em velocidade cheia ou quase. Por ser a versão oficial, você recebe cada melhoria do ARMSX2 assim que ela sai. A versão não oficial RK3588 continua útil para quem precisa ficar no Panfrost, ou para comparar.
+
+### ARMSX2 Nightly + malisx2: install
+
+📖 **Step-by-step tutorial for ROCKNIX:** [English](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/nightly/TUTORIAL-ROCKNIX.md) · [Português](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/nightly/TUTORIAL-ROCKNIX.pt-BR.md)
+
+With ROCKNIX on the **libmali** GPU driver, over SSH (`ssh root@<device-ip>`, password `rocknix`):
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/nightly/install.sh | sh
+```
+
+It installs to `/storage/armsx2-nightly-qt`, selects malisx2 in *Settings → GPU Drivers*, adds **armsx2-nightly** to the PS2 emulators (nothing is removed) and **Start ARMSX2 Nightly** to Tools. Run it again to update; `sh /storage/armsx2-nightly-qt/uninstall.sh` removes it. The installer is unofficial and was tested only on ROCKNIX 20261001 on an Orange Pi 5 (RK3588) with libmali. Without libmali it installs the nightly without malisx2 (untested).
+
+---
+
+## Unofficial ARMSX2 RK3588: install
 
 📖 **Step-by-step tutorial for ROCKNIX:** [English](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX.md) · [Português](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX.pt-BR.md)
 
