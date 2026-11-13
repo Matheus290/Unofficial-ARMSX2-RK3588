@@ -1,20 +1,14 @@
 # Unofficial ARMSX2 build optimized for RK3588
 
-> **🇺🇸 Read first:** this is an **unofficial, experimental fork** of [ARMSX2](https://github.com/ARMSX2/ARMSX2), tuned for **RK3588** boards and handhelds (Orange Pi 5 and similar, Mali-G610 GPU). It is **not affiliated with, endorsed by or supported by the ARMSX2 project**: its changes have not been reviewed or accepted by the ARMSX2 developers. The intent is to help: improvements that prove themselves here may be proposed to ARMSX2 later, gradually. Meanwhile, anyone can install and test them.
+> **Read first:** this is an **unofficial, experimental fork** of [ARMSX2](https://github.com/ARMSX2/ARMSX2), tuned for **RK3588** boards and handhelds (Orange Pi 5 and similar, Mali-G610 GPU). It is **not affiliated with, endorsed by or supported by the ARMSX2 project**: its changes have not been reviewed or accepted by the ARMSX2 developers. The intent is to help: improvements that prove themselves here may be proposed to ARMSX2 later, gradually. Meanwhile, anyone can install and test them.
 >
 > **Found a bug? Report it [here, on this fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), never to the ARMSX2 project.**
 
-> **🇧🇷 Leia antes:** este é um **fork não oficial e experimental** do [ARMSX2](https://github.com/ARMSX2/ARMSX2), otimizado para placas e portáteis **RK3588** (Orange Pi 5 e similares, GPU Mali-G610). Ele **não tem vínculo com o projeto ARMSX2, nem é endossado ou suportado por ele**: as mudanças não foram revisadas nem aceitas pelos desenvolvedores do ARMSX2. A intenção é ajudar: melhorias que se provarem boas aqui poderão ser propostas ao ARMSX2 mais adiante, aos poucos. Enquanto isso, qualquer pessoa pode instalar e testar.
->
-> **Achou um bug? Reporte [aqui, neste fork](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), nunca ao projeto ARMSX2.**
-
 ---
 
-## Which one should I install? / Qual instalar?
+## Which one should I install?
 
 Each [release](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest) has two downloads for ROCKNIX, one per option below. You can install both and pick one per game in EmulationStation.
-
-Cada [release](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest) tem dois downloads para o ROCKNIX, um para cada opção abaixo. Dá para instalar as duas e escolher uma por jogo no EmulationStation.
 
 | | **ARMSX2 Nightly + malisx2** (recommended) | **Unofficial ARMSX2 RK3588** |
 |---|---|---|
@@ -27,8 +21,6 @@ Cada [release](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/l
 | Bugs | Installer: [here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues). Emulator and driver: their own projects | [Here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), never to ARMSX2 |
 
 **Why the Nightly + malisx2 is recommended:** malisx2 is the Mali support the ARMSX2 developers themselves maintain. On the RK3588 it draws the same frames as Arm's libmali in much less GPU time, so heavy games that crawled on the official ARMSX2 with libmali now run at or near full speed. Since it is the official build, you get every ARMSX2 improvement as soon as it lands. The unofficial RK3588 build is still useful if you have to stay on Panfrost, or to compare.
-
-**Por que recomendamos a Nightly + malisx2:** o malisx2 é o suporte a Mali mantido pelos próprios desenvolvedores do ARMSX2. No RK3588, ele desenha os mesmos quadros que o libmali da Arm gastando bem menos tempo de GPU, e jogos pesados que se arrastavam no ARMSX2 oficial com o libmali agora rodam em velocidade cheia ou quase. Por ser a versão oficial, você recebe cada melhoria do ARMSX2 assim que ela sai. A versão não oficial RK3588 continua útil para quem precisa ficar no Panfrost, ou para comparar.
 
 ### ARMSX2 Nightly + malisx2: install
 
