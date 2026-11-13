@@ -1,6 +1,6 @@
 # Tutorial: ARMSX2 Nightly oficial + malisx2 no ROCKNIX
 
-*[English version](TUTORIAL-ROCKNIX.md)*
+*[English version](TUTORIAL-ROCKNIX-NIGHTLY.md)*
 
 Este guia instala a **versão nightly oficial do ARMSX2** junto com o driver Vulkan **malisx2**. Ao final, ela aparece como mais um emulador de PS2 no EmulationStation do ROCKNIX. Leva uns 10 minutos.
 
@@ -77,13 +77,30 @@ Quando aparecer algo como `RK3588:~ #`, você está dentro do aparelho.
 
 ---
 
-## Passo 5: instalar
+## Passo 5: baixar o instalador e instalar
 
-Copie e cole este comando no terminal e aperte Enter:
+1. No computador, abra a [página de Releases](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest) e, em **Assets**, clique em **`install-armsx2-nightly-malisx2.sh`** para baixar.
+2. Copie o arquivo para o aparelho, de um destes jeitos:
+   - pela **pasta compartilhada** do Passo 3: coloque o arquivo dentro de `roms/`;
+   - ou pelo **FileZilla** (protocolo SFTP, servidor `sftp://192.168.0.50`, usuário `root`, senha `rocknix`): arraste o arquivo para a pasta inicial, `/storage`.
+3. No terminal do Passo 4, rode o comando que corresponde a onde você colocou o arquivo:
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/nightly/install.sh | sh
-```
+   ```sh
+   sh /storage/roms/install-armsx2-nightly-malisx2.sh
+   ```
+
+   ou, se usou o FileZilla:
+
+   ```sh
+   sh /storage/install-armsx2-nightly-malisx2.sh
+   ```
+
+> Se o navegador salvar o arquivo com outro nome (por exemplo, com `(1)` no final), renomeie para `install-armsx2-nightly-malisx2.sh` antes de copiar.
+>
+> Atalho para quem já tem costume com o terminal: o comando abaixo baixa e roda o instalador de uma vez.
+> ```sh
+> curl -fsSL https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest/download/install-armsx2-nightly-malisx2.sh | sh
+> ```
 
 O instalador:
 
@@ -149,7 +166,7 @@ Para **sair do jogo**, abra o menu (L3 + R3) e escolha a opção de fechar o jog
 
 ## Atualizar
 
-Rode o mesmo comando do Passo 5. Ele baixa a nightly e o malisx2 mais recentes, se houver versão nova. Suas configurações, memory cards e save states ficam como estão. Se você escolheu outro driver em *GPU Drivers*, o instalador respeita a sua escolha.
+Rode o instalador de novo, como no Passo 5 (o mesmo arquivo serve). Ele baixa a nightly e o malisx2 mais recentes, se houver versão nova. Suas configurações, memory cards e save states ficam como estão. Se você escolheu outro driver em *GPU Drivers*, o instalador respeita a sua escolha.
 
 ## Desinstalar
 

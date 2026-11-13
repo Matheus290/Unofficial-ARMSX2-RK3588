@@ -12,14 +12,17 @@
 
 ## Which one should I install? / Qual instalar?
 
-This repository has two installers for ROCKNIX. You can install both and pick one per game in EmulationStation.
+Each [release](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest) has two downloads for ROCKNIX, one per option below. You can install both and pick one per game in EmulationStation.
+
+Cada [release](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest) tem dois downloads para o ROCKNIX, um para cada opção abaixo. Dá para instalar as duas e escolher uma por jogo no EmulationStation.
 
 | | **ARMSX2 Nightly + malisx2** (recommended) | **Unofficial ARMSX2 RK3588** |
 |---|---|---|
+| Download from Releases | **`install-armsx2-nightly-malisx2.sh`** (installer script) | **`armsx2-rk3588-*-linux-arm64.tar.xz`** (emulator package) |
 | Emulator | The **official** ARMSX2 nightly, unmodified, downloaded from [ARMSX2's releases](https://github.com/ARMSX2/ARMSX2/releases) | This fork: ARMSX2 with experimental RK3588 changes (list below) |
 | Vulkan driver | **[malisx2](https://github.com/bmdhacks/malisx2)**, a Vulkan driver for Mali GPUs made for ARMSX2, selected automatically | The system's driver: Arm's libmali or Mesa's Panfrost |
 | ROCKNIX GPU driver | libmali (malisx2 runs on Arm's kernel driver) | libmali (recommended) or Panfrost |
-| Updates | Run the installer again: it fetches the newest nightly and malisx2 | Releases in this repository |
+| Updates | Run the script again: it fetches the newest nightly and malisx2 | New releases here |
 | EmulationStation / Tools | **armsx2-nightly** / *Start ARMSX2 Nightly* | **armsx2-rk3588** / *Start ARMSX2 RK3588* |
 | Bugs | Installer: [here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues). Emulator and driver: their own projects | [Here](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/issues), never to ARMSX2 |
 
@@ -29,15 +32,21 @@ This repository has two installers for ROCKNIX. You can install both and pick on
 
 ### ARMSX2 Nightly + malisx2: install
 
-📖 **Step-by-step tutorial for ROCKNIX:** [English](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/nightly/TUTORIAL-ROCKNIX.md) · [Português](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/nightly/TUTORIAL-ROCKNIX.pt-BR.md)
+📖 **Step-by-step tutorial for ROCKNIX:** [English](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX-NIGHTLY.md) · [Português](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/blob/rk3588/rk3588/TUTORIAL-ROCKNIX-NIGHTLY.pt-BR.md)
 
-With ROCKNIX on the **libmali** GPU driver, over SSH (`ssh root@<device-ip>`, password `rocknix`):
+With ROCKNIX on the **libmali** GPU driver: download **`install-armsx2-nightly-malisx2.sh`** from the [latest release](https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest), copy it to the device (for example with FileZilla over SFTP into `/storage`, user `root`, password `rocknix`), and run it over SSH:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Matheus290/Unofficial-ARMSX2-RK3588/rk3588/nightly/install.sh | sh
+sh /storage/install-armsx2-nightly-malisx2.sh
 ```
 
-It installs to `/storage/armsx2-nightly-qt`, selects malisx2 in *Settings → GPU Drivers*, adds **armsx2-nightly** to the PS2 emulators (nothing is removed) and **Start ARMSX2 Nightly** to Tools. Run it again to update; `sh /storage/armsx2-nightly-qt/uninstall.sh` removes it. The installer is unofficial and was tested only on ROCKNIX 20261001 on an Orange Pi 5 (RK3588) with libmali. Without libmali it installs the nightly without malisx2 (untested).
+Or, in one go over SSH:
+
+```sh
+curl -fsSL https://github.com/Matheus290/Unofficial-ARMSX2-RK3588/releases/latest/download/install-armsx2-nightly-malisx2.sh | sh
+```
+
+It installs to `/storage/armsx2-nightly-qt`, selects malisx2 in *Settings → GPU Drivers*, adds **armsx2-nightly** to the PS2 emulators (nothing is removed) and **Start ARMSX2 Nightly** to Tools. Run the script again to update; `sh /storage/armsx2-nightly-qt/uninstall.sh` removes it. The installer is unofficial and was tested only on ROCKNIX 20261001 on an Orange Pi 5 (RK3588) with libmali. Without libmali it installs the nightly without malisx2 (untested).
 
 ---
 
